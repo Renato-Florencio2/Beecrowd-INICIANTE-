@@ -2,66 +2,36 @@
 using namespace std;
 int main(){
 
-    int diasA, horasA, minuA, seguA;
-    int dias=0, horas=0, minu=0, segu=0;
+    int di, hi, mi, si, df, hf, mf, sf;
+    string lixo;
 
-    //Entrada
-    string lixo; // Para ignorar a palavra "Dia"
+    cin >> lixo >> di;
+    cin >> hi >> lixo >> mi >> lixo >> si;
+    cin >> lixo >> df;
+    cin >> hf >> lixo >> mf >> lixo >> sf;
 
-    // Lendo o início do evento
-    cin >> lixo >> diasA;
-    cin >> horasA; cin.ignore();
-    cin >> minuA; cin.ignore();
-    cin >> seguA;
+    hi += di * 24;
+    mi += hi * 60;
+    si += mi * 60;
 
-    // Lendo o término do evento
-    cin >> lixo >> dias;
-    cin >> horas; cin.ignore();
-    cin >> minu; cin.ignore();
-    cin >> segu;
+    hf += df * 24;
+    mf += hf * 60;
+    sf += mf * 60;
 
-    //QI
-    dias = dias - diasA;
-    
-    if(horasA == horas){
-        horas = 0;
-    }else{
-        if(horasA > horas){
-            horas = horas - horasA + 24;
-            dias -= 1; 
-        }else{
-            horas = horas - horasA;
-        }
-    }
+    sf -= si;
 
-    if(minuA == minu){
-        minu = 0;
-    }else{
-        if(minuA > minu){
-            minu = minu - minuA + 60;
-            horas -= 1; 
-        }else{
-            minu = minu - minuA;
-        }
-    }
+    mf = sf / 60;
+    sf = sf % 60;
+    hf = mf / 60;
+    mf = mf % 60;
+    df = hf / 24;
+    hf = hf % 24;
 
-    if(seguA == segu){
-        segu = 0;
-    }else{
-        if(seguA > segu){
-            segu = segu - seguA + 60;
-            minu -= 1; 
-        }else{
-            segu = segu - seguA;
-        }
-    }
 
-    //Saída
-
-    cout << dias << " dia(s)" << endl;
-    cout << horas << " hora(s)" << endl;
-    cout << minu << " minuto(s)" << endl;
-    cout << segu << " segundo(s)" << endl;
-
+    cout << df << " dia(s)" << endl;
+    cout << hf << " hora(s)" << endl;
+    cout << mf << " minuto(s)" << endl;
+    cout << sf << " segundo(s)" << endl;
+ 
     return 0;
 }
